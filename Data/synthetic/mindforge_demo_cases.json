@@ -1,0 +1,63 @@
+[
+  {
+    "title": "Clean adherence: stable patient",
+    "patient_note": "I took my medication on time today. Mood is steady. Slept about 7 hours. No major concerns.",
+    "device_or_app_events": {
+      "doses_scheduled": 2,
+      "doses_taken": 2,
+      "missed_doses_7d": 0,
+      "sleep_hours_last_night": 7,
+      "mood_score_1_to_10": 7,
+      "caregiver_note": ""
+    }
+  },
+  {
+    "title": "Missed medication + insomnia + agitation",
+    "patient_note": "Missed medication twice this week. Sleeping only 3 hours. Caregiver says I am more irritable and pacing at night.",
+    "device_or_app_events": {
+      "doses_scheduled": 14,
+      "doses_taken": 12,
+      "missed_doses_7d": 2,
+      "sleep_hours_last_night": 3,
+      "mood_score_1_to_10": 3,
+      "caregiver_note": "more irritable, pacing at night"
+    }
+  },
+  {
+    "title": "Side effect causing nonadherence",
+    "patient_note": "I feel dizzy after taking the new medicine. I skipped the morning dose because I was afraid of falling.",
+    "device_or_app_events": {
+      "doses_scheduled": 2,
+      "doses_taken": 1,
+      "missed_doses_7d": 1,
+      "sleep_hours_last_night": 6,
+      "mood_score_1_to_10": 5,
+      "caregiver_note": "patient looked unsteady in kitchen"
+    }
+  },
+  {
+    "title": "Dispensed but not retrieved",
+    "patient_note": "The device says medication was dispensed but I don't remember taking it. Caregiver found the pill still in the tray.",
+    "device_or_app_events": {
+      "doses_scheduled": 2,
+      "doses_taken": 1,
+      "missed_doses_7d": 1,
+      "dispense_event": "released_not_retrieved",
+      "sleep_hours_last_night": 6,
+      "mood_score_1_to_10": 5,
+      "caregiver_note": "pill in tray"
+    }
+  },
+  {
+    "title": "Crisis: explicit self-harm intent",
+    "patient_note": "Patient wrote: I might hurt myself tonight. I do not want anyone to stop me.",
+    "device_or_app_events": {
+      "doses_scheduled": 2,
+      "doses_taken": 1,
+      "missed_doses_7d": 1,
+      "sleep_hours_last_night": 1,
+      "mood_score_1_to_10": 1,
+      "caregiver_note": "not reachable by phone for 2 hours"
+    }
+  }
+]

@@ -1,29 +1,23 @@
-# MindForge AI — AMD Hackathon
+# MindForge AI — AMD Developer Hackathon
 
-Dataset and tooling for MindForge risk-review SFT data.
+MindForge AI is a focused mental-health risk review copilot built as a Healus module for the AMD Developer Hackathon.
 
-## Dataset layout
+It converts synthetic patient/caregiver notes, medication-adherence signals, device events, sleep/mood changes, and side-effect concerns into structured JSON outputs:
 
-Synthetic JSONL files live under `data/synthetic/`:
+- risk level
+- medication/adherence flags
+- escalation recommendation
+- patient-safe explanation
+- clinician-ready summary
 
-- `mindforge_train.jsonl`
-- `mindforge_validation.jsonl`
+This repo is public for hackathon judging and demonstration only. All data is synthetic. No PHI.
 
-## Validate JSONL
+## Dataset
 
-After extracting `mindforge_dataset_step1.zip` into this repository root:
+See `data/synthetic/README.md`.
 
-```bash
-python scripts/validate_sft_jsonl.py \
-  data/synthetic/mindforge_train.jsonl \
-  data/synthetic/mindforge_validation.jsonl
-```
-
-## Git workflow (example)
+## Validation
 
 ```bash
-git checkout -b dataset-step1
-git add .
-git commit -m "Add synthetic MindForge risk review dataset"
-git push -u origin dataset-step1
+python scripts/validate_sft_jsonl.py data/synthetic/mindforge_train.jsonl data/synthetic/mindforge_validation.jsonl
 ```

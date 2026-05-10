@@ -1,0 +1,213 @@
+[
+  {
+    "case_id": "MF-SYN-0070",
+    "input": {
+      "patient_note": "Synthetic patient E reports nausea after medication and skipped breakfast. Mood is okay but they do not want the next dose.",
+      "device_or_app_events": {
+        "doses_scheduled": 2,
+        "doses_taken": 1,
+        "missed_doses_7d": 0,
+        "sleep_hours_last_night": 7,
+        "mood_score_1_to_10": 6
+      }
+    },
+    "expected": {
+      "risk_level": "MODERATE",
+      "risk_score_band": [
+        25,
+        49
+      ],
+      "must_include_flags": [
+        "possible upcoming nonadherence",
+        "hesitant_next_dose",
+        "nausea"
+      ],
+      "escalation_level": "clinician_followup"
+    }
+  },
+  {
+    "case_id": "MF-SYN-0014",
+    "input": {
+      "patient_note": "Patient reports nausea after medication and skipped breakfast. Mood is okay but they do not want the next dose.",
+      "device_or_app_events": {
+        "doses_scheduled": 2,
+        "doses_taken": 1,
+        "missed_doses_7d": 0,
+        "sleep_hours_last_night": 5,
+        "mood_score_1_to_10": 6
+      }
+    },
+    "expected": {
+      "risk_level": "MODERATE",
+      "risk_score_band": [
+        25,
+        49
+      ],
+      "must_include_flags": [
+        "possible upcoming nonadherence",
+        "hesitant_next_dose",
+        "nausea"
+      ],
+      "escalation_level": "clinician_followup"
+    }
+  },
+  {
+    "case_id": "MF-SYN-0018",
+    "input": {
+      "patient_note": "Patient took medication but says voices are louder tonight and they are scared to be alone.",
+      "device_or_app_events": {
+        "doses_scheduled": 2,
+        "doses_taken": 2,
+        "missed_doses_7d": 0,
+        "sleep_hours_last_night": 3,
+        "mood_score_1_to_10": 3
+      }
+    },
+    "expected": {
+      "risk_level": "HIGH",
+      "risk_score_band": [
+        50,
+        79
+      ],
+      "must_include_flags": [
+        "low sleep",
+        "psychosis-like symptom report",
+        "fear of being alone"
+      ],
+      "escalation_level": "same_day_clinician"
+    }
+  },
+  {
+    "case_id": "MF-SYN-0029",
+    "input": {
+      "patient_note": "Caregiver says patient has not opened the app for two days but device confirms medication was taken.",
+      "device_or_app_events": {
+        "doses_scheduled": 4,
+        "doses_taken": 4,
+        "missed_doses_7d": 0,
+        "app_inactive_days": 2,
+        "sleep_hours_last_night": "unknown",
+        "mood_score_1_to_10": "unknown"
+      }
+    },
+    "expected": {
+      "risk_level": "MODERATE",
+      "risk_score_band": [
+        25,
+        49
+      ],
+      "must_include_flags": [
+        "reduced engagement",
+        "adherence confirmed"
+      ],
+      "escalation_level": "caregiver_checkin"
+    }
+  },
+  {
+    "case_id": "MF-SYN-0032",
+    "input": {
+      "patient_note": "Synthetic patient B took medication but says voices are louder tonight and they are scared to be alone.",
+      "device_or_app_events": {
+        "doses_scheduled": 2,
+        "doses_taken": 2,
+        "missed_doses_7d": 0,
+        "sleep_hours_last_night": 4,
+        "mood_score_1_to_10": 1
+      }
+    },
+    "expected": {
+      "risk_level": "HIGH",
+      "risk_score_band": [
+        50,
+        79
+      ],
+      "must_include_flags": [
+        "low sleep",
+        "psychosis-like symptom report",
+        "fear of being alone"
+      ],
+      "escalation_level": "same_day_clinician"
+    }
+  },
+  {
+    "case_id": "MF-SYN-0036",
+    "input": {
+      "patient_note": "Synthetic patient B says the medication makes them feel emotionally flat. They took during the latest check-in's dose but are considering stopping.",
+      "device_or_app_events": {
+        "doses_scheduled": 1,
+        "doses_taken": 1,
+        "missed_doses_7d": 0,
+        "sleep_hours_last_night": 8,
+        "mood_score_1_to_10": 5
+      }
+    },
+    "expected": {
+      "risk_level": "MODERATE",
+      "risk_score_band": [
+        25,
+        49
+      ],
+      "must_include_flags": [
+        "side-effect concern",
+        "possible_future_nonadherence",
+        "intent to stop medication"
+      ],
+      "escalation_level": "clinician_followup"
+    }
+  },
+  {
+    "case_id": "MF-SYN-0004",
+    "input": {
+      "patient_note": "I feel dizzy after taking the new medicine. I skipped the morning dose because I was afraid of falling.",
+      "device_or_app_events": {
+        "doses_scheduled": 2,
+        "doses_taken": 1,
+        "missed_doses_7d": 1,
+        "sleep_hours_last_night": 6,
+        "mood_score_1_to_10": 5,
+        "caregiver_note": "patient looked unsteady in kitchen"
+      }
+    },
+    "expected": {
+      "risk_level": "HIGH",
+      "risk_score_band": [
+        50,
+        79
+      ],
+      "must_include_flags": [
+        "dose skipped due to dizziness",
+        "missed_dose",
+        "fear_of_adverse_effect",
+        "possible side effect",
+        "fall risk"
+      ],
+      "escalation_level": "same_day_clinician"
+    }
+  },
+  {
+    "case_id": "MF-SYN-0015",
+    "input": {
+      "patient_note": "Caregiver says patient has not opened the app for two days but device confirms medication was taken.",
+      "device_or_app_events": {
+        "doses_scheduled": 4,
+        "doses_taken": 4,
+        "missed_doses_7d": 0,
+        "app_inactive_days": 2,
+        "sleep_hours_last_night": "unknown",
+        "mood_score_1_to_10": "unknown"
+      }
+    },
+    "expected": {
+      "risk_level": "MODERATE",
+      "risk_score_band": [
+        25,
+        49
+      ],
+      "must_include_flags": [
+        "reduced engagement",
+        "adherence confirmed"
+      ],
+      "escalation_level": "caregiver_checkin"
+    }
+  }
+]

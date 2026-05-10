@@ -1,0 +1,11 @@
+{
+  "created_at_utc": "2026-05-10T00:12:45.133279Z",
+  "dataset_name": "MindForge AI Synthetic Risk Review Dataset",
+  "train_rows": 60,
+  "validation_rows": 12,
+  "raw_rows": 80,
+  "eval_rows": 8,
+  "demo_rows": 5,
+  "license": "All rights reserved; hackathon demo only",
+  "privacy": "Synthetic data only; no PHI"
+}

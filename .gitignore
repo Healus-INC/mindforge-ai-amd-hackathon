@@ -1,5 +1,10 @@
-.DS_Store
+.env
 __pycache__/
 *.pyc
-.venv/
-venv/
+.DS_Store
+.ipynb_checkpoints/
+outputs/
+checkpoints/
+wandb/
+*.safetensors
+*.bin
