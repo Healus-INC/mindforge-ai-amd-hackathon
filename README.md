@@ -2,7 +2,7 @@
 
 **Hackathon submission:** the canonical branch for judging is **`main`**. On GitHub, set **Settings → General → Default branch** to **`main`** so the landing page matches this README.
 
-**LoRA adapters:** trained weights are in **`outputs/mindforge-qwen-lora/`** (demo-sized run) and **`outputs/mindforge-qwen-lora-scale/`** (overnight scale run) as `adapter_model.safetensors` plus `adapter_config.json` (committed). A single-file **`mindforge-qwen-lora-adapter.zip`** (~223MB) may exist locally for convenience but exceeds GitHub’s per-file limit—clone from this repo or rebuild the zip from those folders.
+**LoRA adapters:** trained weights are in **`outputs/mindforge-qwen-lora/`** (demo-sized run) and **`outputs/mindforge-qwen-lora-scale/`** (overnight scale run) as `adapter_model.safetensors` plus `adapter_config.json` (committed). The same adapter bundle is published on the Hugging Face Hub as **[lablab-ai-amd-developer-hackathon/mindforge-qwen-lora-amd-hackathon](https://huggingface.co/lablab-ai-amd-developer-hackathon/mindforge-qwen-lora-amd-hackathon)**; for a pinned revision use **[this commit](https://huggingface.co/lablab-ai-amd-developer-hackathon/mindforge-qwen-lora-amd-hackathon/commit/f5a0ece6d5e1bab0cb1b6750511779a3a03a8e0c)**. A single-file **`mindforge-qwen-lora-adapter.zip`** (~223MB) may exist locally for convenience but exceeds GitHub’s per-file limit—use the Hub, clone this repo, or rebuild the zip from those folders.
 
 MindForge AI is a **synthetic hackathon demo** that fine-tunes **Qwen2.5-Instruct** with **LoRA SFT** on structured mental-health-style dialogues, then serves a **Gradio** reviewer UI for human-in-the-loop escalation. **It does not provide medical care**; outputs are for demonstration and offline evaluation only.
 
