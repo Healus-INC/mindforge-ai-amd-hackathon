@@ -1,10 +1,25 @@
+# Secrets and local env (never commit tokens)
 .env
+.env.*
+!.env.example
+
+# Python environments and bytecode
+.venv/
 __pycache__/
 *.pyc
-.DS_Store
 .ipynb_checkpoints/
-outputs/
-checkpoints/
+
+# OS noise
+.DS_Store
+
+# Large ML binaries — weights & checkpoints stay off GitHub
 wandb/
+checkpoints/
 *.safetensors
 *.bin
+
+# Trainer checkpoints inside outputs/ (if present)
+outputs/**/checkpoint-*/
+
+# Bundled LoRA adapter zip (~231MB) exceeds GitHub's 100MB blob limit — keep local / attach as release or HF
+mindforge-qwen-lora-adapter.zip

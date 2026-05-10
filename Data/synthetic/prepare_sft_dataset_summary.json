@@ -1,0 +1,20 @@
+{
+  "train_in": "data/synthetic/mindforge_train.scale.sft.jsonl",
+  "validation_in": "data/synthetic/mindforge_validation.scale.sft.jsonl",
+  "out_train": "data/synthetic/mindforge_train.scale.cleaned.jsonl",
+  "out_validation": "data/synthetic/mindforge_validation.scale.cleaned.jsonl",
+  "train_rows_kept": 7200,
+  "validation_rows_kept": 400,
+  "train_risk_distribution": {
+    "MODERATE": 2650,
+    "HIGH": 2079,
+    "LOW": 1708,
+    "CRISIS": 763
+  },
+  "validation_risk_distribution": {
+    "LOW": 92,
+    "MODERATE": 150,
+    "HIGH": 121,
+    "CRISIS": 37
+  }
+}

@@ -1,0 +1,36 @@
+# MindForge Gradio — systemd unit (droplet / judge demo).
+#
+# Install on the server:
+#   sudo cp deploy/mindforge-gradio.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now mindforge-gradio.service
+#
+# Optional env overrides (PORT, ADAPTER_DIR, GRADIO_SHARE, etc.):
+#   sudo touch /etc/mindforge-gradio.env
+#   echo 'PORT=7860' | sudo tee -a /etc/mindforge-gradio.env
+#
+# Logs: journalctl -u mindforge-gradio.service -f
+
+[Unit]
+Description=MindForge Gradio demo (Qwen LoRA UI)
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/root/hackathon
+Environment=PYTHONUNBUFFERED=1
+# Optional file: KEY=value lines (see comments at top). Leading "-" ignores if missing.
+EnvironmentFile=-/etc/mindforge-gradio.env
+ExecStart=/root/hackathon/.venv/bin/python /root/hackathon/run_demo.py
+Restart=always
+RestartSec=10
+TimeoutStopSec=45
+KillMode=mixed
+
+[Install]
+WantedBy=multi-user.target

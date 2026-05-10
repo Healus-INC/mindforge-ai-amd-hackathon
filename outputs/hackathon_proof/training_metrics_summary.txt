@@ -1,0 +1,18 @@
+# MindForge — final training metrics (from checkpoint-48 / trainer_state.json)
+# Use for pitch deck + README; capture a full-screen screenshot of your training terminal for item (1).
+#
+# Last training step (step 48, end of epoch 6):
+#   loss: 0.2911316752433777
+#   mean_token_accuracy: 0.9373286068439484
+#
+# Final validation at step 48 (epoch 6.0):
+eval_loss: 0.26605120301246643
+eval_mean_token_accuracy: 0.9387676368157069
+#
+# Your reported numbers (eval 0.2661, token acc 0.9388, train 0.7747) match the eval line;
+# train_loss 0.7747 may refer to a different aggregate (e.g. mid-epoch) — the last logged
+# training step loss is ~0.291 in this run’s log_history.
+#
+epoch: 6.0
+global_step: 48
+adapter_path: outputs/mindforge-qwen-lora

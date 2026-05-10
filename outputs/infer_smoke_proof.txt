@@ -1,0 +1,8 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]Loading weights:  30%|███       | 87/290 [00:00<00:00, 847.95it/s]Loading weights:  67%|██████▋   | 195/290 [00:00<00:00, 964.59it/s]Loading weights: 100%|██████████| 290/290 [00:00<00:00, 996.67it/s]
+{"risk_level": "HIGH", "risk_score": 65, "primary_concerns": ["reduced sleep", "caregiver report of withdrawal", "one dose missed"], "medication_adherence": {"status": "recent_missed_dose", "flags": ["missed_dose_pattern"], "recommended_action": "Caregiver should check in and use app reminder if not responding to phone."}, "safety_flags": ["increased isolation"], "final_risk_review_state": "high risk", "full_summary": "Synthetic case LIVING DEMO 1: HIGH risk. Key concerns: reduced sleep; caregiver report of withdrawal; one dose missed.", "clinician_notes": "High risk due to reduced sleep, caregiver report of withdrawal, and one dose missed.", "not_medical_advice": true}
+
+JSON_VALID=true
+risk_level= HIGH
+risk_score= 65

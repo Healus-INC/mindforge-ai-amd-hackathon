@@ -1,0 +1,26 @@
+{
+  "case_id": "MF-SYN-0018",
+  "input": {
+    "patient_note": "Patient took medication but says voices are louder tonight and they are scared to be alone.",
+    "device_or_app_events": {
+      "doses_scheduled": 2,
+      "doses_taken": 2,
+      "missed_doses_7d": 0,
+      "sleep_hours_last_night": 3,
+      "mood_score_1_to_10": 3
+    }
+  },
+  "expected": {
+    "risk_level": "HIGH",
+    "risk_score_band": [
+      50,
+      79
+    ],
+    "must_include_flags": [
+      "low sleep",
+      "psychosis-like symptom report",
+      "fear of being alone"
+    ],
+    "escalation_level": "same_day_clinician"
+  }
+}

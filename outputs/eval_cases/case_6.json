@@ -1,0 +1,26 @@
+{
+  "case_id": "MF-SYN-0036",
+  "input": {
+    "patient_note": "Synthetic patient B says the medication makes them feel emotionally flat. They took during the latest check-in's dose but are considering stopping.",
+    "device_or_app_events": {
+      "doses_scheduled": 1,
+      "doses_taken": 1,
+      "missed_doses_7d": 0,
+      "sleep_hours_last_night": 8,
+      "mood_score_1_to_10": 5
+    }
+  },
+  "expected": {
+    "risk_level": "MODERATE",
+    "risk_score_band": [
+      25,
+      49
+    ],
+    "must_include_flags": [
+      "side-effect concern",
+      "possible_future_nonadherence",
+      "intent to stop medication"
+    ],
+    "escalation_level": "clinician_followup"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-10T15:23:30.967283+00:00",
+  "training_objective": "Supervised fine-tuning (LoRA SFT) on structured chat JSONL so Qwen2.5-Instruct outputs a single MindForge assistant object: risk_level, risk_score, primary concerns, medication adherence, side-effect / sleep-mood / safety flags, escalation_recommendation, patient_safe_response, clinician_summary, care_loop_targets, and missing_info. Training uses the full SFT contract in code (including a boolean disclaimer field). No RL / GRPO on top.",
+  "methodology": [
+    "Parameter-efficient LoRA (PEFT) on Qwen attention + MLP projections.",
+    "TRL SFTTrainer, causal LM, bf16 on GPU, cosine LR schedule.",
+    "Overnight scale defaults: Qwen/Qwen2.5-1.5B-Instruct, 3\u00d7 epochs, data/synthetic/*.scale.cleaned.jsonl \u2192 outputs/mindforge-qwen-lora-scale.",
+    "Demo path: Qwen/Qwen2.5-0.5B-Instruct \u2192 outputs/mindforge-qwen-lora."
+  ],
+  "scale_dataset": {
+    "train_file": "data/synthetic/mindforge_train.scale.cleaned.jsonl",
+    "validation_file": "data/synthetic/mindforge_validation.scale.cleaned.jsonl",
+    "train_rows": 7200,
+    "validation_rows": 400,
+    "risk_distribution_train": {
+      "MODERATE": 2650,
+      "HIGH": 2079,
+      "LOW": 1708,
+      "CRISIS": 763
+    },
+    "risk_distribution_validation": {
+      "LOW": 92,
+      "MODERATE": 150,
+      "HIGH": 121,
+      "CRISIS": 37
+    },
+    "notes": "100\u00d7 package rows were normalized to the canonical 13-key SFT assistant JSON (scripts/normalize_100x_assistant_to_sft.py) before prepare_sft_dataset.py."
+  },
+  "demo_dataset": {
+    "train_file": "data/synthetic/mindforge_train.cleaned.jsonl",
+    "validation_file": "data/synthetic/mindforge_validation.cleaned.jsonl",
+    "train_rows": 60,
+    "validation_rows": 12
+  },
+  "overnight_run": {
+    "script": "training/run_overnight_scale.sh",
+    "default_base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "default_output_dir": "outputs/mindforge-qwen-lora-scale",
+    "default_epochs": 3,
+    "default_batch_grad_accum": "per_device_batch=1, grad_accum=8",
+    "default_learning_rate": 0.0002,
+    "default_max_length": 2048
+  },
+  "eval": {
+    "scale": {
+      "label": "Scale / overnight adapter (100\u00d7 SFT)",
+      "base_model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "adapter_dir": "outputs/mindforge-qwen-lora-scale",
+      "cases_file": "data/synthetic/mindforge_eval_cases.json",
+      "metrics": {
+        "n_cases": 8,
+        "json_parse": {
+          "base_pass": 7,
+          "lora_pass": 7,
+          "base_rate": 0.875,
+          "lora_rate": 0.875
+        },
+        "training_schema_full": {
+          "base_pass": 2,
+          "lora_pass": 0,
+          "base_rate": 0.25,
+          "lora_rate": 0.0
+        },
+        "schema_core": {
+          "base_pass": 2,
+          "lora_pass": 5,
+          "base_rate": 0.25,
+          "lora_rate": 0.625
+        },
+        "risk_level_exact_match": {
+          "n_gold": 8,
+          "base_correct": 1,
+          "lora_correct": 1,
+          "base_rate": 0.125,
+          "lora_rate": 0.125
+        },
+        "escalation_match": {
+          "n_gold": 8,
+          "base_correct": 0,
+          "lora_correct": 1,
+          "base_rate": 0.0,
+          "lora_rate": 0.125
+        }
+      }
+    },
+    "demo": {
+      "label": "Demo adapter (smaller SFT run)",
+      "base_model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "adapter_dir": "outputs/mindforge-qwen-lora",
+      "cases_file": "data/synthetic/mindforge_eval_cases.json",
+      "metrics": {
+        "n_cases": 8,
+        "json_parse": {
+          "base_pass": 8,
+          "lora_pass": 7,
+          "base_rate": 1.0,
+          "lora_rate": 0.875
+        },
+        "training_schema_full": {
+          "base_pass": 0,
+          "lora_pass": 0,
+          "base_rate": 0.0,
+          "lora_rate": 0.0
+        },
+        "schema_core": {
+          "base_pass": 0,
+          "lora_pass": 7,
+          "base_rate": 0.0,
+          "lora_rate": 0.875
+        },
+        "risk_level_exact_match": {
+          "n_gold": 8,
+          "base_correct": 0,
+          "lora_correct": 6,
+          "base_rate": 0.0,
+          "lora_rate": 0.75
+        },
+        "escalation_match": {
+          "n_gold": 8,
+          "base_correct": 0,
+          "lora_correct": 1,
+          "base_rate": 0.0,
+          "lora_rate": 0.125
+        }
+      }
+    },
+    "primary": "scale"
+  },
+  "how_to_refresh_eval": "cd repo && source .venv/bin/activate\n# Scale adapter (must match BASE_MODEL used at train time):\npython scripts/evaluate_base_vs_lora.py \\\n  --base_model Qwen/Qwen2.5-1.5B-Instruct \\\n  --adapter_dir outputs/mindforge-qwen-lora-scale \\\n  --out_json outputs/base_vs_lora_scale_report.json \\\n  --out_md outputs/base_vs_lora_scale_report.md\n# Then rebuild this summary:\npython scripts/build_training_results_summary.py"
+}

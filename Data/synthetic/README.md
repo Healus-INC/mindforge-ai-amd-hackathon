@@ -25,11 +25,34 @@ The model receives synthetic patient/caregiver notes, medication-adherence event
 |---|---|
 | `mindforge_train.jsonl` | 60 SFT examples in chat/messages format |
 | `mindforge_validation.jsonl` | 12 validation examples |
+| `mindforge_train.cleaned.jsonl` | Same rows after **schema validate + dedupe** (`scripts/prepare_sft_dataset.py`) |
+| `mindforge_validation.cleaned.jsonl` | Same for validation split |
+| `assistant_schema.json` | JSON Schema snapshot of the assistant object |
 | `mindforge_eval_cases.json` | held-out evaluation cases |
 | `mindforge_demo_cases.json` | UI dropdown/demo examples |
 | `mindforge_raw_cases.jsonl` | raw input + expected output records |
 | `mindforge_output_schema.json` | JSON schema for model output |
 | `mindforge_risk_rubric.json` | risk-level rubric |
+
+## 100× scale data (separate from demo)
+
+After copying a zip to the server, ingest from repo root:
+
+```bash
+python scripts/ingest_scale_zip.py /path/to/dataset.zip
+```
+
+That installs **`mindforge_train.scale.jsonl`** / **`mindforge_validation.scale.jsonl`** and builds **`*.scale.cleaned.jsonl`** without overwriting demo **`mindforge_train.cleaned.jsonl`**.
+
+## Assistant JSON contract
+
+All assistant turns must match the **fixed key set** documented in `docs/ASSISTANT_JSON_SCHEMA.md` and enforced by `scripts/validate_sft_jsonl.py`.
+
+Prepare / dedupe / stratification report:
+
+```bash
+python scripts/prepare_sft_dataset.py
+```
 
 ## Risk levels
 

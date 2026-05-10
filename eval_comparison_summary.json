@@ -1,0 +1,109 @@
+{
+  "title": "MindForge LoRA vs base Qwen \u2014 structured task adherence",
+  "submission_framing": {
+    "headline": "LoRA improved structured task adherence.",
+    "do_not_claim": "Do not claim clinical superiority or that outputs are clinically accurate.",
+    "closing_line": "The adapter does not make medical decisions. It makes Qwen more reliably produce the Healus/MindForge care-loop structure, which can then be validated, audited, and governed."
+  },
+  "methodology": {
+    "cases_file": "/root/hackathon/data/synthetic/mindforge_eval_cases.json",
+    "n_cases": 8,
+    "base_model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "base_run": {
+      "run_label": "base_qwen",
+      "adapter_dir": null,
+      "no_adapter": true
+    },
+    "lora_run": {
+      "run_label": "mindforge_lora",
+      "adapter_dir": "/root/hackathon/outputs/mindforge-qwen-lora",
+      "no_adapter": false
+    },
+    "note": "Same prompts and held-out cases for both runs; gold labels never included in the prompt."
+  },
+  "slide_table": [
+    {
+      "metric": "Valid JSON output",
+      "base_qwen": "87.5%",
+      "mindforge_lora": "100.0%",
+      "metric_key": "valid_json_rate"
+    },
+    {
+      "metric": "Required schema fields present (all slide-critical fields)",
+      "base_qwen": "12.5%",
+      "mindforge_lora": "37.5%",
+      "metric_key": "required_schema_fields_present"
+    },
+    {
+      "metric": "Risk level present",
+      "base_qwen": "87.5%",
+      "mindforge_lora": "62.5%",
+      "metric_key": "risk_level_present"
+    },
+    {
+      "metric": "Expected risk_level match (gold, when labeled)",
+      "base_qwen": "12.5%",
+      "mindforge_lora": "50.0%",
+      "metric_key": "expected_risk_level_match"
+    },
+    {
+      "metric": "Escalation recommendation present",
+      "base_qwen": "87.5%",
+      "mindforge_lora": "62.5%",
+      "metric_key": "escalation_present"
+    },
+    {
+      "metric": "Patient-safe response present",
+      "base_qwen": "87.5%",
+      "mindforge_lora": "37.5%",
+      "metric_key": "patient_safe_response_present"
+    },
+    {
+      "metric": "Clinician summary present",
+      "base_qwen": "25.0%",
+      "mindforge_lora": "50.0%",
+      "metric_key": "clinician_summary_present"
+    },
+    {
+      "metric": "Medication / adherence flags present",
+      "base_qwen": "25.0%",
+      "mindforge_lora": "50.0%",
+      "metric_key": "medication_or_adherence_flags_present"
+    }
+  ],
+  "metrics_raw": {
+    "base_qwen": {
+      "valid_json_rate": 0.875,
+      "required_schema_fields_present": 0.125,
+      "risk_level_present": 0.875,
+      "expected_risk_level_match": 0.125,
+      "escalation_present": 0.875,
+      "patient_safe_response_present": 0.875,
+      "clinician_summary_present": 0.25,
+      "medication_or_adherence_flags_present": 0.25
+    },
+    "mindforge_lora": {
+      "valid_json_rate": 1.0,
+      "required_schema_fields_present": 0.375,
+      "risk_level_present": 0.625,
+      "expected_risk_level_match": 0.5,
+      "escalation_present": 0.625,
+      "patient_safe_response_present": 0.375,
+      "clinician_summary_present": 0.5,
+      "medication_or_adherence_flags_present": 0.5
+    }
+  },
+  "side_by_side_example": {
+    "input": "Patient missed meds, slept 3 hours, caregiver reports agitation. (Use the closest held-out eval vignette; excerpt below is from the A/B run.)",
+    "base_qwen_characterization": "Often generic chat, truncated JSON, or missing escalation / clinician fields \u2014 see base_output_excerpt.",
+    "mindforge_lora_characterization": "More often emits a single JSON object with risk level, adherence/side-effect signal, escalation_recommendation, patient_safe_response, and clinician_summary \u2014 see lora_output_excerpt.",
+    "from_eval_case": {
+      "case_id": "MF-SYN-0014",
+      "input_excerpt": "Patient reports nausea after medication and skipped breakfast. Mood is okay but they do not want the next dose.",
+      "base_output_excerpt": "{\n  \"risk_level\": \"MODERATE\",\n  \"risk_score\": 83,\n  \"not_medical_advice\": false,\n  \"escalation_recommendation\": {\n    \"level\": \"MEDIUM\",\n    \"timeframe\": \"next dose scheduled in 7 days\",\n    \"reason\": \"Nausea and missed breakfast may indicate an underlying issue requiring further evaluation.\"\n  },\n  \"primary_concerns\": [\n    \"Nausea\",\n    \"Sleep issues\"\n  ],\n  \"medication_adherence\": true,\n  \"side...",
+      "lora_output_excerpt": "{\"risk_level\": \"MODERATE\", \"risk_score\": 38, \"not_medical_advice\": false, \"escalation_recommendation\": {\"level\": \"next_visit\", \"timeframe\": \"the next day\", \"reason\": \"Nausea followed by missed dose may be concerning.\"}, \"primary_concerns\": [\"nausea\", \"missed dose\", \"low sleep\"], \"medication_adherence\": {\"flags\": [\"missed_dose\"], \"recommended_action\": \"Contact clinician same day if future doses not...",
+      "base_required_schema": false,
+      "lora_required_schema": true
+    }
+  }
+}

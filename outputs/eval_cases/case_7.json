@@ -1,0 +1,29 @@
+{
+  "case_id": "MF-SYN-0004",
+  "input": {
+    "patient_note": "I feel dizzy after taking the new medicine. I skipped the morning dose because I was afraid of falling.",
+    "device_or_app_events": {
+      "doses_scheduled": 2,
+      "doses_taken": 1,
+      "missed_doses_7d": 1,
+      "sleep_hours_last_night": 6,
+      "mood_score_1_to_10": 5,
+      "caregiver_note": "patient looked unsteady in kitchen"
+    }
+  },
+  "expected": {
+    "risk_level": "HIGH",
+    "risk_score_band": [
+      50,
+      79
+    ],
+    "must_include_flags": [
+      "dose skipped due to dizziness",
+      "missed_dose",
+      "fear_of_adverse_effect",
+      "possible side effect",
+      "fall risk"
+    ],
+    "escalation_level": "same_day_clinician"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "case_id": "MF-SYN-0070",
+  "input": {
+    "patient_note": "Synthetic patient E reports nausea after medication and skipped breakfast. Mood is okay but they do not want the next dose.",
+    "device_or_app_events": {
+      "doses_scheduled": 2,
+      "doses_taken": 1,
+      "missed_doses_7d": 0,
+      "sleep_hours_last_night": 7,
+      "mood_score_1_to_10": 6
+    }
+  },
+  "expected": {
+    "risk_level": "MODERATE",
+    "risk_score_band": [
+      25,
+      49
+    ],
+    "must_include_flags": [
+      "possible upcoming nonadherence",
+      "hesitant_next_dose",
+      "nausea"
+    ],
+    "escalation_level": "clinician_followup"
+  }
+}

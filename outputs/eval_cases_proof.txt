@@ -1,0 +1,125 @@
+================================================================================
+CASE 1 VALID True
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]
+Loading weights:  22%|██▏       | 64/290 [00:00<00:00, 630.53it/s]
+Loading weights:  61%|██████    | 177/290 [00:00<00:00, 920.35it/s]
+Loading weights:  99%|█████████▉| 287/290 [00:00<00:00, 1001.72it/s]
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 959.80it/s] 
+{"risk_level": "MODERATE", "risk_score_band": [28, 35], "must_include_flags": ["possible nausea", "skipping dose", "low sleep"], "recommended_action": {"clinician_summary": "Synthetic case MF-SYN-0070: MODERATE risk. Must include flags: possible nausea; skipping dose; low sleep.", "medical_advice": "Have the patient pause what they are eating and check in with their caregiver. If this continues, contact your clinician or trusted care team for guidance.", "escalation_recommendation": "Clinician/donor call; follow up tomorrow."}, "not_medical_advice": true}
+
+JSON_VALID=true
+risk_level= MODERATE
+risk_score= None
+
+================================================================================
+CASE 2 VALID False
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]
+Loading weights:  28%|██▊       | 81/290 [00:00<00:00, 809.36it/s]
+Loading weights:  68%|██████▊   | 196/290 [00:00<00:00, 994.70it/s]
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 1028.63it/s]
+{"risk_level": "MODERATE", "risk_score_band": [28, 35], "must_include_flags": ["possible nausea", "skipped breakfast", "medication not taken"], "normalized_score": 18.0, "required_flags": ["possible upcoming nonadherence", "hesitant_next_dose", "nausea"], "must_include_clinician_info": true, "not_medical_advice Needed."}
+
+JSON_VALID=false JSONDecodeError("Expecting ':' delimiter: line 1 column 322 (char 321)")
+
+================================================================================
+CASE 3 VALID True
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]
+Loading weights:  22%|██▏       | 64/290 [00:00<00:00, 635.64it/s]
+Loading weights:  61%|██████▏   | 178/290 [00:00<00:00, 929.53it/s]
+Loading weights:  97%|█████████▋| 281/290 [00:00<00:00, 966.24it/s]
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 950.19it/s]
+{"risk_level": "HIGH", "risk_score_band": [60, 100], "must_include_flags": ["loud voice(s)", "scared to be alone", "reduced sleep", "misalignment with routine"], "sorted_flags": ["loud voice(s)", "scared to be alone", "reduced sleep", "misalignment with routine"], "must_include_safety_relevant_info": true, "recommended_action": {"clinician_summary": "High risk. Must include loud voice(s), scared to be alone, reduced sleep, and misalignment with routine. Same day safety escalation is recommended."}, "missing_info": ["diagnosis/care plan", "recent exposure", "caregiver concern"], "not_medical_advice": true}
+
+JSON_VALID=true
+risk_level= HIGH
+risk_score= None
+
+================================================================================
+CASE 4 VALID True
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]
+Loading weights:  22%|██▏       | 64/290 [00:00<00:00, 636.96it/s]
+Loading weights:  63%|██████▎   | 182/290 [00:00<00:00, 945.00it/s]
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 978.78it/s]
+{"risk_level": "MODERATE", "risk_score_band": [30, 48], "must_include_flags": ["reduced engagement", "adherence confirmed"], "escalation_level": "caregiver_checkin", "included_flags": [], "recommended_action": "Have caregiver check-in; use app reminder if unavailable; monitor adherence and mood over next few days."}
+
+JSON_VALID=true
+risk_level= MODERATE
+risk_score= None
+
+================================================================================
+CASE 5 VALID False
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]
+Loading weights:  22%|██▏       | 63/290 [00:00<00:00, 621.28it/s]
+Loading weights:  63%|██████▎   | 182/290 [00:00<00:00, 943.43it/s]
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 972.70it/s]
+{"case_id": "MF-SYN-0032", "input": {"patient_note": "Synthetic patient B took medication but says voices are louder tonight and they are scared to be alone.", "device_or_app_events": {"doses_scheduled": 2, "doses_taken": 2, "missed_doses_7d": 0, "sleep_hours_last_night": 4, "mood_score_1_to_10": 1}, "desired_outcomes": ["safe self-care"], "required_flags": ["low sleep", "psychosis-like symptom report", "fear of being alone"], "recommended_flags": ["low sleep", "scared to be alone", "misleading language"], "exact_match_result": "synthetic_case MF-SYN-0032", "synthetic_data_range": {"start": "", "end": ""}, "caretaker_action": {"kind": "escalate", "level": "same_day_clinician", "reason": "Patient reported voices are louder and fear is escalating."}, "not_medical_advice": true}
+
+JSON_VALID=false JSONDecodeError("Expecting ',' delimiter: line 1 column 787 (char 786)")
+
+================================================================================
+CASE 6 VALID True
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]
+Loading weights:  32%|███▏      | 93/290 [00:00<00:00, 928.19it/s]
+Loading weights:  70%|██████▉   | 202/290 [00:00<00:00, 1019.51it/s]
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 1052.16it/s]
+{"risk_level": "MODERATE", "risk_score_band": [26, 33], "must_include_flags": ["situational_response_to_clinical_risk", "medication_adherence_mitigation_required"], "recommended_action": "Suggest medication review, side-effect management plan, and use of app reminders if clinically significant.", "missing_info": ["whether mood improvement is expected"], "not_medical_advice_needed": true}
+
+JSON_VALID=true
+risk_level= MODERATE
+risk_score= None
+
+================================================================================
+CASE 7 VALID True
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]
+Loading weights:  20%|██        | 58/290 [00:00<00:00, 575.10it/s]
+Loading weights:  59%|█████▉    | 172/290 [00:00<00:00, 899.13it/s]
+Loading weights:  98%|█████████▊| 284/290 [00:00<00:00, 997.91it/s]
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 955.78it/s]
+{"risk_level": "HIGH", "risk_score": 83, "must_include_flags": ["dose_skipped", "missed_dose", "side_effect", "dizziness", "fall-risk", "caregiver_conflict"], "escalation_level": "same_day_clinician"}
+
+JSON_VALID=true
+risk_level= HIGH
+risk_score= 83
+
+================================================================================
+CASE 8 VALID True
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Loading weights:   0%|          | 0/290 [00:00<?, ?it/s]
+Loading weights:  27%|██▋       | 77/290 [00:00<00:00, 755.86it/s]
+Loading weights:  66%|██████▌   | 191/290 [00:00<00:00, 977.26it/s]
+Loading weights: 100%|██████████| 290/290 [00:00<00:00, 1000.50it/s]
+{"risk_level": "MODERATE", "risk_score_band": [30, 48], "must_include_flags": ["reduced engagement", "adherence confirmed"], "escalation_level": "caregiver_checkin", "included_flags": [], "recommended_action": "Have caregiver check-in; use app reminder if unavailable; monitor adherence and mood over next few days."}
+
+JSON_VALID=true
+risk_level= MODERATE
+risk_score= None
+
+================================================================================
+{
+  "total": 8,
+  "json_valid": 6,
+  "json_valid_rate": 0.75
+}

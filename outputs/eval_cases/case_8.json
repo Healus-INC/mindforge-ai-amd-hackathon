@@ -1,0 +1,26 @@
+{
+  "case_id": "MF-SYN-0015",
+  "input": {
+    "patient_note": "Caregiver says patient has not opened the app for two days but device confirms medication was taken.",
+    "device_or_app_events": {
+      "doses_scheduled": 4,
+      "doses_taken": 4,
+      "missed_doses_7d": 0,
+      "app_inactive_days": 2,
+      "sleep_hours_last_night": "unknown",
+      "mood_score_1_to_10": "unknown"
+    }
+  },
+  "expected": {
+    "risk_level": "MODERATE",
+    "risk_score_band": [
+      25,
+      49
+    ],
+    "must_include_flags": [
+      "reduced engagement",
+      "adherence confirmed"
+    ],
+    "escalation_level": "caregiver_checkin"
+  }
+}

@@ -3,23 +3,10 @@ import json
 import sys
 from pathlib import Path
 
-REQUIRED = {
-    "risk_level",
-    "risk_score",
-    "primary_concerns",
-    "medication_adherence",
-    "side_effect_flags",
-    "sleep_mood_flags",
-    "safety_flags",
-    "escalation_recommendation",
-    "patient_safe_response",
-    "clinician_summary",
-    "care_loop_targets",
-    "missing_info",
-    "not_medical_advice",
-}
+from mindforge_schema import REQUIRED_ASSISTANT_KEYS, VALID_RISK_LEVELS
 
-VALID_RISK = {"LOW", "MODERATE", "HIGH", "CRISIS"}
+REQUIRED = REQUIRED_ASSISTANT_KEYS
+VALID_RISK = VALID_RISK_LEVELS
 
 def validate_file(path: Path) -> int:
     errors = 0

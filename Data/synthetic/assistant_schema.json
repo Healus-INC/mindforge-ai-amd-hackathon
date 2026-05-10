@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mindforge.local/schemas/assistant-response.json",
+  "title": "MindForgeAssistantResponse",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "risk_level",
+    "risk_score",
+    "primary_concerns",
+    "medication_adherence",
+    "side_effect_flags",
+    "sleep_mood_flags",
+    "safety_flags",
+    "escalation_recommendation",
+    "patient_safe_response",
+    "clinician_summary",
+    "care_loop_targets",
+    "missing_info",
+    "not_medical_advice"
+  ],
+  "properties": {
+    "risk_level": {
+      "type": "string",
+      "enum": ["LOW", "MODERATE", "HIGH", "CRISIS"]
+    },
+    "risk_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "primary_concerns": { "type": "array", "items": { "type": "string" } },
+    "medication_adherence": { "type": "object" },
+    "side_effect_flags": { "type": "array", "items": { "type": "string" } },
+    "sleep_mood_flags": { "type": "array", "items": { "type": "string" } },
+    "safety_flags": { "type": "array", "items": { "type": "string" } },
+    "escalation_recommendation": { "type": "object" },
+    "patient_safe_response": { "type": "string" },
+    "clinician_summary": { "type": "string" },
+    "care_loop_targets": { "type": "array", "items": { "type": "string" } },
+    "missing_info": { "type": "array", "items": { "type": "string" } },
+    "not_medical_advice": { "type": "boolean", "const": true }
+  }
+}

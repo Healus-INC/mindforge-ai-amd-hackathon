@@ -1,0 +1,23 @@
+Python: 3.12.3 (main, Mar 23 2026, 19:04:32) [GCC 13.3.0]
+HIP_VISIBLE_DEVICES: None
+ROCR_VISIBLE_DEVICES: None
+
+$ amd-smi list
+GPU: 0
+    BDF: 0000:83:00.0
+    UUID: d9ff74b5-0000-1000-80a4-8e76c87300a1
+    KFD_ID: 21947
+    NODE_ID: 1
+    PARTITION_ID: 0
+
+
+
+$ rocminfo
+Could not run rocminfo: [Errno 2] No such file or directory: 'rocminfo'
+
+Torch: 2.13.0.dev20260428+rocm7.2
+Torch HIP: 7.2.53211
+CUDA/HIP available: True
+Device count: 1
+Device 0: AMD Instinct MI300X VF
+Device 0 matmul OK: 15.0859375
