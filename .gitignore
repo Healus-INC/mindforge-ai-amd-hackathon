@@ -12,14 +12,20 @@ __pycache__/
 # OS noise
 .DS_Store
 
-# Large ML binaries — weights & checkpoints stay off GitHub
+# Large ML blobs — full Trainer checkpoints / caches stay off GitHub
 wandb/
 checkpoints/
-*.safetensors
-*.bin
 
 # Trainer checkpoints inside outputs/ (if present)
 outputs/**/checkpoint-*/
 
-# Bundled LoRA adapter zip (~231MB) exceeds GitHub's 100MB blob limit — keep local / attach as release or HF
+# Ignore arbitrary weight dumps, but track MindForge LoRA adapters + trainer metadata (each file <100MB)
+*.safetensors
+!outputs/mindforge-qwen-lora/adapter_model.safetensors
+!outputs/mindforge-qwen-lora-scale/adapter_model.safetensors
+*.bin
+!outputs/mindforge-qwen-lora/training_args.bin
+!outputs/mindforge-qwen-lora-scale/training_args.bin
+
+# Optional local bundle (same adapters as outputs/*/adapter_model.safetensors); too large for GitHub as a single blob
 mindforge-qwen-lora-adapter.zip
